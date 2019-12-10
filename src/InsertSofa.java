@@ -18,6 +18,7 @@ public class InsertSofa extends javax.swing.JFrame {
      */
     public InsertSofa() {
         initComponents();
+        setDefaultCloseOperation(InsertSofa.DISPOSE_ON_CLOSE);
     }
 
     /**
