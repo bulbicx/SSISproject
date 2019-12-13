@@ -579,9 +579,13 @@ public class GUISofa extends javax.swing.JFrame {
                     }
                 } while(nextRow < rowCount && !emptyRowFlag);
             
-                for(int i = 0; i < columnCount; i++) {
-                    jTable_SofaDetails.setValueAt(list.get(i), nextRow, i);
-                } 
+                
+                jTable_SofaDetails.setValueAt(sofaId, nextRow, 0);
+                jTable_SofaDetails.setValueAt(sofaName, nextRow, 1);
+                jTable_SofaDetails.setValueAt(categories, nextRow, 2);
+                jTable_SofaDetails.setValueAt(colour, nextRow, 3);
+                jTable_SofaDetails.setValueAt(price, nextRow, 4);
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");
