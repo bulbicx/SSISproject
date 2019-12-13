@@ -10,13 +10,13 @@
  */
 public class SSinfo {
     
-    public int sofaId;
+    public String sofaId;
     public String sofaName;
     public String category;
     public String colour;
-    public int price;
+    public String price;
 
-    public SSinfo(int sofaId, String sofaName, String category, String colour, int price) 
+    public SSinfo(String sofaId, String sofaName, String category, String colour, String price) 
     {
         this.sofaId = sofaId;
         this.sofaName = sofaName;
@@ -25,7 +25,7 @@ public class SSinfo {
         this.price = price;
     }
 
-    public int getSofaId()
+    public String getSofaId()
     {
         return sofaId;
     }
@@ -45,12 +45,12 @@ public class SSinfo {
         return colour;
     }
 
-    public int getPrice() 
+    public String getPrice() 
     {
         return price;
     }
 
-    public void setSofaId(int sofaId) 
+    public void setSofaId(String sofaId) 
     {
         this.sofaId = sofaId;
     }
@@ -70,7 +70,7 @@ public class SSinfo {
         this.colour = colour;
     }
 
-    public void setPrice(int price) 
+    public void setPrice(String price) 
     {
         this.price = price;
     }  
