@@ -62,11 +62,11 @@ public class GUISofa extends javax.swing.JFrame {
         jComboBox1_Colour = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
-        jRadioButton_SofaBeds = new javax.swing.JRadioButton();
-        jRadioButton_CornerSofa = new javax.swing.JRadioButton();
-        jRadioButton_Armchairs = new javax.swing.JRadioButton();
-        jRadioButton_Sofas = new javax.swing.JRadioButton();
-        jRadioButton_ChaiseLounge = new javax.swing.JRadioButton();
+        jRadioButton_White = new javax.swing.JRadioButton();
+        jRadioButton_Brown = new javax.swing.JRadioButton();
+        jRadioButton_Grey = new javax.swing.JRadioButton();
+        jRadioButton_Black = new javax.swing.JRadioButton();
+        jRadioButton_Red = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
         jComboBox_Categories = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
@@ -230,44 +230,44 @@ public class GUISofa extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1_Colour.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1_Colour.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Black", "White", "Red", "Brown", "Grey", " " }));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Colour");
 
         jPanel6.setBackground(new java.awt.Color(44, 62, 80));
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Categories:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Colour:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jRadioButton_SofaBeds.setBackground(new java.awt.Color(44, 62, 80));
-        jRadioButton_SofaBeds.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton_SofaBeds.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton_SofaBeds.setText("Sofa Beds");
-        jRadioButton_SofaBeds.addActionListener(new java.awt.event.ActionListener() {
+        jRadioButton_White.setBackground(new java.awt.Color(44, 62, 80));
+        jRadioButton_White.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton_White.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton_White.setText("White");
+        jRadioButton_White.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton_SofaBedsActionPerformed(evt);
+                jRadioButton_WhiteActionPerformed(evt);
             }
         });
 
-        jRadioButton_CornerSofa.setBackground(new java.awt.Color(44, 62, 80));
-        jRadioButton_CornerSofa.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton_CornerSofa.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton_CornerSofa.setText("Corner Sofa");
+        jRadioButton_Brown.setBackground(new java.awt.Color(44, 62, 80));
+        jRadioButton_Brown.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton_Brown.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton_Brown.setText("Brown");
 
-        jRadioButton_Armchairs.setBackground(new java.awt.Color(44, 62, 80));
-        jRadioButton_Armchairs.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton_Armchairs.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton_Armchairs.setText("Armchairs");
+        jRadioButton_Grey.setBackground(new java.awt.Color(44, 62, 80));
+        jRadioButton_Grey.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton_Grey.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton_Grey.setText("Grey");
 
-        jRadioButton_Sofas.setBackground(new java.awt.Color(44, 62, 80));
-        jRadioButton_Sofas.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton_Sofas.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton_Sofas.setText("Sofas");
+        jRadioButton_Black.setBackground(new java.awt.Color(44, 62, 80));
+        jRadioButton_Black.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton_Black.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton_Black.setText("Black");
 
-        jRadioButton_ChaiseLounge.setBackground(new java.awt.Color(44, 62, 80));
-        jRadioButton_ChaiseLounge.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jRadioButton_ChaiseLounge.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton_ChaiseLounge.setText("Chaise-Lounge");
+        jRadioButton_Red.setBackground(new java.awt.Color(44, 62, 80));
+        jRadioButton_Red.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jRadioButton_Red.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton_Red.setText("Red");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -276,31 +276,27 @@ public class GUISofa extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton_SofaBeds)
-                            .addComponent(jRadioButton_Sofas))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRadioButton_ChaiseLounge)
-                            .addComponent(jRadioButton_CornerSofa)))
-                    .addComponent(jRadioButton_Armchairs))
+                    .addComponent(jRadioButton_White)
+                    .addComponent(jRadioButton_Black)
+                    .addComponent(jRadioButton_Grey)
+                    .addComponent(jRadioButton_Brown)
+                    .addComponent(jRadioButton_Red))
                 .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton_SofaBeds)
-                    .addComponent(jRadioButton_ChaiseLounge))
+                .addComponent(jRadioButton_White)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton_Sofas)
-                    .addComponent(jRadioButton_CornerSofa))
+                .addComponent(jRadioButton_Black)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton_Armchairs)
-                .addContainerGap())
+                .addComponent(jRadioButton_Grey)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton_Brown)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jRadioButton_Red)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
@@ -312,7 +308,8 @@ public class GUISofa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton_Insert1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jButton_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel6))
                 .addGap(32, 32, 32))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -326,17 +323,16 @@ public class GUISofa extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jTextField_SofaName, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField_Price1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addComponent(jComboBox1_Colour, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jTextField_Price1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 46, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel7)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jComboBox1_Colour, 0, 82, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -345,24 +341,25 @@ public class GUISofa extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(jLabel5)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel7))
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_SofaId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Price1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_SofaName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1_Colour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox1_Colour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_Price1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
                         .addComponent(jButton_Insert1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
-                        .addComponent(jButton_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(70, Short.MAX_VALUE))
+                        .addComponent(jButton_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
 
         jPanel4.setBackground(new java.awt.Color(44, 62, 80));
@@ -546,9 +543,9 @@ public class GUISofa extends javax.swing.JFrame {
         jTextField_SofaId.setText("");
     }//GEN-LAST:event_jTextField_SofaIdMouseClicked
 
-    private void jRadioButton_SofaBedsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_SofaBedsActionPerformed
+    private void jRadioButton_WhiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_WhiteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton_SofaBedsActionPerformed
+    }//GEN-LAST:event_jRadioButton_WhiteActionPerformed
 
     private void jComboBox_CategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CategoriesActionPerformed
         // TODO add your handling code here:
@@ -615,11 +612,11 @@ public class GUISofa extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JRadioButton jRadioButton_Armchairs;
-    private javax.swing.JRadioButton jRadioButton_ChaiseLounge;
-    private javax.swing.JRadioButton jRadioButton_CornerSofa;
-    private javax.swing.JRadioButton jRadioButton_SofaBeds;
-    private javax.swing.JRadioButton jRadioButton_Sofas;
+    private javax.swing.JRadioButton jRadioButton_Black;
+    private javax.swing.JRadioButton jRadioButton_Brown;
+    private javax.swing.JRadioButton jRadioButton_Grey;
+    private javax.swing.JRadioButton jRadioButton_Red;
+    private javax.swing.JRadioButton jRadioButton_White;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField jTextField_Price;
