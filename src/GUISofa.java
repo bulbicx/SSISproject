@@ -9,8 +9,8 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 
 /**
- *
- * @author simon
+ *@author Marco Castellana
+ * @author Simone Agus
  */
 public class GUISofa extends javax.swing.JFrame {
     
@@ -116,7 +116,7 @@ public class GUISofa extends javax.swing.JFrame {
         jButton_AvailableSofa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton_AvailableSofa.setText("Available Sofa");
 
-        jComboBox_Categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Sofa Beds", "Corner Sofas", "Armchairs", "Chaise-Lounge", "Sofas" }));
+        jComboBox_Categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Sofa Beds", "Corner Sofas", "Armchairs", "Chaise-Lounge", "Sofas" }));
         jComboBox_Categories.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBox_CategoriesActionPerformed(evt);
@@ -175,7 +175,7 @@ public class GUISofa extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "Sofa ID", "Category", "Sofa Name", "Colour", "Price"
+                "Sofa ID", "Sofa Name", "Category", "Colour", "Price"
             }
         ) {
             boolean[] canEdit = new boolean [] {

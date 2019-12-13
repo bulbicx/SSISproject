@@ -282,12 +282,13 @@
             <Component class="javax.swing.JComboBox" name="jComboBox_Categories">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
-                    <StringItem index="0" value="Sofa Beds"/>
-                    <StringItem index="1" value="Corner Sofas"/>
-                    <StringItem index="2" value="Armchairs"/>
-                    <StringItem index="3" value="Chaise-Lounge"/>
-                    <StringItem index="4" value="Sofas"/>
+                  <StringArray count="6">
+                    <StringItem index="0" value="Select"/>
+                    <StringItem index="1" value="Sofa Beds"/>
+                    <StringItem index="2" value="Corner Sofas"/>
+                    <StringItem index="3" value="Armchairs"/>
+                    <StringItem index="4" value="Chaise-Lounge"/>
+                    <StringItem index="5" value="Sofas"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -369,8 +370,8 @@
                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                       <Table columnCount="5" rowCount="10">
                         <Column editable="false" title="Sofa ID" type="java.lang.Object"/>
-                        <Column editable="false" title="Category" type="java.lang.Object"/>
                         <Column editable="false" title="Sofa Name" type="java.lang.Object"/>
+                        <Column editable="false" title="Category" type="java.lang.Object"/>
                         <Column editable="false" title="Colour" type="java.lang.Object"/>
                         <Column editable="false" title="Price" type="java.lang.Object"/>
                       </Table>
