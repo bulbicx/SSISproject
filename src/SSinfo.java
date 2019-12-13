@@ -14,9 +14,9 @@ public class SSinfo {
     public String sofaName;
     public String category;
     public String colour;
-    public String price;
+    public int price;
 
-    public SSinfo(String sofaId, String sofaName, String category, String colour, String price) 
+    public SSinfo(String sofaId, String sofaName, String category, String colour, int price) 
     {
         this.sofaId = sofaId;
         this.sofaName = sofaName;
@@ -45,7 +45,7 @@ public class SSinfo {
         return colour;
     }
 
-    public String getPrice() 
+    public int getPrice() 
     {
         return price;
     }
@@ -70,7 +70,7 @@ public class SSinfo {
         this.colour = colour;
     }
 
-    public void setPrice(String price) 
+    public void setPrice(int price) 
     {
         this.price = price;
     }  

@@ -20,6 +20,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 public class GUISofa extends javax.swing.JFrame {
     
     private final JFileChooser openFile;
+    ArrayList<SSinfo> list = new ArrayList<SSinfo>();//creating arraylist
     
 
     /**
@@ -86,6 +87,7 @@ public class GUISofa extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Sofa Search", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
+        jTextField_PriceSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         jTextField_PriceSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTextField_PriceSearchMouseClicked(evt);
@@ -99,6 +101,7 @@ public class GUISofa extends javax.swing.JFrame {
         jButton_Search1.setBackground(new java.awt.Color(102, 102, 102));
         jButton_Search1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton_Search1.setText("Search");
+        jButton_Search1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton_Search1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_Search1ActionPerformed(evt);
@@ -205,6 +208,7 @@ public class GUISofa extends javax.swing.JFrame {
         jButton_Clear.setBackground(new java.awt.Color(153, 153, 153));
         jButton_Clear.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_Clear.setText("Clear");
+        jButton_Clear.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton_Clear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_ClearActionPerformed(evt);
@@ -220,6 +224,7 @@ public class GUISofa extends javax.swing.JFrame {
         jButton_Insert.setBackground(new java.awt.Color(153, 153, 153));
         jButton_Insert.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jButton_Insert.setText("Insert");
+        jButton_Insert.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton_Insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton_InsertActionPerformed(evt);
@@ -246,6 +251,7 @@ public class GUISofa extends javax.swing.JFrame {
         jRadioButton_White.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_White.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_White.setText("White");
+        jRadioButton_White.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jRadioButton_White.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRadioButton_WhiteActionPerformed(evt);
@@ -257,24 +263,28 @@ public class GUISofa extends javax.swing.JFrame {
         jRadioButton_Brown.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Brown.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Brown.setText("Brown");
+        jRadioButton_Brown.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jRadioButton_Grey.setBackground(new java.awt.Color(44, 62, 80));
         buttonGroup1.add(jRadioButton_Grey);
         jRadioButton_Grey.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Grey.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Grey.setText("Grey");
+        jRadioButton_Grey.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jRadioButton_Black.setBackground(new java.awt.Color(44, 62, 80));
         buttonGroup1.add(jRadioButton_Black);
         jRadioButton_Black.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Black.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Black.setText("Black");
+        jRadioButton_Black.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jRadioButton_Red.setBackground(new java.awt.Color(44, 62, 80));
         buttonGroup1.add(jRadioButton_Red);
         jRadioButton_Red.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Red.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Red.setText("Red");
+        jRadioButton_Red.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -386,6 +396,12 @@ public class GUISofa extends javax.swing.JFrame {
         jButton_AvailableSofa.setBackground(new java.awt.Color(102, 102, 102));
         jButton_AvailableSofa.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton_AvailableSofa.setText("Available Sofa");
+        jButton_AvailableSofa.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton_AvailableSofa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_AvailableSofaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -533,13 +549,13 @@ public class GUISofa extends javax.swing.JFrame {
         try {
             String sofaId = jTextField_SofaId.getText();
             String sofaName = jTextField_SofaName.getText();
-            String price = jTextField_PriceInsert.getText();
+            int price = Integer.parseInt(jTextField_PriceInsert.getText());
             String colour = "";
             String categories = "";
 
             //if fields are left empty a panel will be displayed.
-            if((sofaId.equals("") || sofaName.equals("")) || (price.equals("") || jComboBox_Categories.getSelectedItem().equals("Select")) || buttonGroup1.getSelection() == null ){
-                JOptionPane.showMessageDialog(null, "please insert details");
+            if((sofaId.equals("") || sofaName.equals("")) || (jTextField_PriceInsert.getText().isEmpty() || jComboBox_Categories.getSelectedItem().equals("Select")) || buttonGroup1.getSelection() == null ){
+                JOptionPane.showMessageDialog(null, "Please insert some details");
             } else {
                 categories = jComboBox_Categories.getSelectedItem().toString(); //assign selected category to variable.
                 
@@ -560,11 +576,9 @@ public class GUISofa extends javax.swing.JFrame {
                     colour = jRadioButton_White.getText();
                 }
             
-                //creating arraylist
-                ArrayList<SSinfo> list = new ArrayList<SSinfo>();
-                list.add(new SSinfo(sofaId, sofaName, categories, colour, price)); // add details to array
+                list.add(new SSinfo(sofaId, sofaName, categories, colour, price)); 
                 int rowCount = jTable_SofaDetails.getRowCount();
-                int columnCount = jTable_SofaDetails.getColumnCount();
+                //int columnCount = jTable_SofaDetails.getColumnCount();
                 int nextRow = 0;
                 boolean emptyRowFlag = false;
                 String check;
@@ -579,7 +593,7 @@ public class GUISofa extends javax.swing.JFrame {
                     }
                 } while(nextRow < rowCount && !emptyRowFlag);
             
-                
+                //fill details on jTable.
                 jTable_SofaDetails.setValueAt(sofaId, nextRow, 0);
                 jTable_SofaDetails.setValueAt(sofaName, nextRow, 1);
                 jTable_SofaDetails.setValueAt(categories, nextRow, 2);
@@ -603,6 +617,12 @@ public class GUISofa extends javax.swing.JFrame {
     private void jComboBox_CategoriesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CategoriesSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox_CategoriesSearchActionPerformed
+
+    private void jButton_AvailableSofaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AvailableSofaActionPerformed
+    //String message = "There are " + ;
+    //if()
+//JOptionPane.showMessageDialog(null, "There are " + list.size().SSinfo(2) + " pieces of " + jComboBox_CategoriesSearch.getSe);
+    }//GEN-LAST:event_jButton_AvailableSofaActionPerformed
 
     /**
      * @param args the command line arguments
