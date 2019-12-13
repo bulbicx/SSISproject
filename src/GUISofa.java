@@ -1,6 +1,8 @@
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.Collection;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -28,7 +30,6 @@ public class GUISofa extends javax.swing.JFrame {
         
         openFile = new JFileChooser();
         openFile.setFileFilter(new FileNameExtensionFilter("TXT files","txt"));
-        
     }
 
     /**
@@ -43,23 +44,23 @@ public class GUISofa extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
-        jTextField_Price = new javax.swing.JTextField();
+        jTextField_PriceSearch = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jButton_Search1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTable_SofaDetails = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
-        jTextField_Price1 = new javax.swing.JTextField();
+        jTextField_PriceInsert = new javax.swing.JTextField();
         jButton_Clear = new javax.swing.JButton();
         jTextField_SofaName = new javax.swing.JTextField();
-        jButton_Insert1 = new javax.swing.JButton();
+        jButton_Insert = new javax.swing.JButton();
         jTextField_SofaId = new javax.swing.JTextField();
-        jComboBox1_Colour = new javax.swing.JComboBox();
+        jComboBox_Categories = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jRadioButton_White = new javax.swing.JRadioButton();
@@ -68,7 +69,7 @@ public class GUISofa extends javax.swing.JFrame {
         jRadioButton_Black = new javax.swing.JRadioButton();
         jRadioButton_Red = new javax.swing.JRadioButton();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox_Categories = new javax.swing.JComboBox();
+        jComboBox_CategoriesSearch = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         jButton_AvailableSofa = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -85,13 +86,13 @@ public class GUISofa extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Sofa Search", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
         jPanel3.setForeground(new java.awt.Color(255, 255, 255));
 
-        jTextField_Price.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextField_PriceSearch.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField_PriceMouseClicked(evt);
+                jTextField_PriceSearchMouseClicked(evt);
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Price:");
 
@@ -110,18 +111,19 @@ public class GUISofa extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jTextField_PriceSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jTextField_Price, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(26, 26, 26)
-                .addComponent(jButton_Search1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jButton_Search1, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTextField_Price, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_PriceSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel4)
                     .addComponent(jButton_Search1))
                 .addContainerGap())
@@ -132,10 +134,10 @@ public class GUISofa extends javax.swing.JFrame {
 
         jScrollPane1.setBorder(null);
 
-        jTable1.setBackground(new java.awt.Color(102, 102, 102));
-        jTable1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTable_SofaDetails.setBackground(new java.awt.Color(102, 102, 102));
+        jTable_SofaDetails.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jTable_SofaDetails.setForeground(new java.awt.Color(255, 255, 255));
+        jTable_SofaDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
                 {null, null, null, null, null},
@@ -160,7 +162,7 @@ public class GUISofa extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTable_SofaDetails);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -194,9 +196,9 @@ public class GUISofa extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Price");
 
-        jTextField_Price1.addMouseListener(new java.awt.event.MouseAdapter() {
+        jTextField_PriceInsert.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField_Price1MouseClicked(evt);
+                jTextField_PriceInsertMouseClicked(evt);
             }
         });
 
@@ -215,12 +217,12 @@ public class GUISofa extends javax.swing.JFrame {
             }
         });
 
-        jButton_Insert1.setBackground(new java.awt.Color(153, 153, 153));
-        jButton_Insert1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton_Insert1.setText("Insert");
-        jButton_Insert1.addActionListener(new java.awt.event.ActionListener() {
+        jButton_Insert.setBackground(new java.awt.Color(153, 153, 153));
+        jButton_Insert.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jButton_Insert.setText("Insert");
+        jButton_Insert.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton_Insert1ActionPerformed(evt);
+                jButton_InsertActionPerformed(evt);
             }
         });
 
@@ -230,16 +232,17 @@ public class GUISofa extends javax.swing.JFrame {
             }
         });
 
-        jComboBox1_Colour.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Black", "White", "Red", "Brown", "Grey", " " }));
+        jComboBox_Categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Sofa Beds", "Corner Sofas", "Armchairs", "Chaise-Lounge", "Sofas" }));
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Colour");
+        jLabel7.setText("Categories");
 
         jPanel6.setBackground(new java.awt.Color(44, 62, 80));
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Colour:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 18), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jRadioButton_White.setBackground(new java.awt.Color(44, 62, 80));
+        buttonGroup1.add(jRadioButton_White);
         jRadioButton_White.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_White.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_White.setText("White");
@@ -250,21 +253,25 @@ public class GUISofa extends javax.swing.JFrame {
         });
 
         jRadioButton_Brown.setBackground(new java.awt.Color(44, 62, 80));
+        buttonGroup1.add(jRadioButton_Brown);
         jRadioButton_Brown.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Brown.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Brown.setText("Brown");
 
         jRadioButton_Grey.setBackground(new java.awt.Color(44, 62, 80));
+        buttonGroup1.add(jRadioButton_Grey);
         jRadioButton_Grey.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Grey.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Grey.setText("Grey");
 
         jRadioButton_Black.setBackground(new java.awt.Color(44, 62, 80));
+        buttonGroup1.add(jRadioButton_Black);
         jRadioButton_Black.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Black.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Black.setText("Black");
 
         jRadioButton_Red.setBackground(new java.awt.Color(44, 62, 80));
+        buttonGroup1.add(jRadioButton_Red);
         jRadioButton_Red.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jRadioButton_Red.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_Red.setText("Red");
@@ -293,7 +300,7 @@ public class GUISofa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton_Grey)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jRadioButton_Brown)
+                .addComponent(jRadioButton_Brown, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jRadioButton_Red)
                 .addContainerGap(16, Short.MAX_VALUE))
@@ -307,7 +314,7 @@ public class GUISofa extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton_Insert1, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6))
                 .addGap(32, 32, 32))
@@ -326,9 +333,9 @@ public class GUISofa extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jComboBox1_Colour, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jComboBox_Categories, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField_Price1, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jTextField_PriceInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 46, Short.MAX_VALUE))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addComponent(jLabel7)
@@ -347,12 +354,12 @@ public class GUISofa extends javax.swing.JFrame {
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTextField_SofaId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField_SofaName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox1_Colour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField_Price1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jComboBox_Categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField_PriceInsert, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(22, 22, 22)
-                        .addComponent(jButton_Insert1, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(26, 26, 26)
                         .addComponent(jButton_Clear, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -365,14 +372,14 @@ public class GUISofa extends javax.swing.JFrame {
         jPanel4.setBackground(new java.awt.Color(44, 62, 80));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Available Sofas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
 
-        jComboBox_Categories.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Sofa Beds", "Corner Sofas", "Armchairs", "Chaise-Lounge", "Sofas" }));
-        jComboBox_Categories.addActionListener(new java.awt.event.ActionListener() {
+        jComboBox_CategoriesSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Sofa Beds", "Corner Sofas", "Armchairs", "Chaise-Lounge", "Sofas" }));
+        jComboBox_CategoriesSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_CategoriesActionPerformed(evt);
+                jComboBox_CategoriesSearchActionPerformed(evt);
             }
         });
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Categories:");
 
@@ -385,9 +392,9 @@ public class GUISofa extends javax.swing.JFrame {
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 84, Short.MAX_VALUE)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jComboBox_Categories, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jComboBox_CategoriesSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton_AvailableSofa, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(55, 55, 55))
@@ -397,7 +404,7 @@ public class GUISofa extends javax.swing.JFrame {
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox_Categories, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jComboBox_CategoriesSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jButton_AvailableSofa))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -496,9 +503,9 @@ public class GUISofa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu_OpenActionPerformed
 
-    private void jTextField_PriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_PriceMouseClicked
-        jTextField_Price.setText("");
-    }//GEN-LAST:event_jTextField_PriceMouseClicked
+    private void jTextField_PriceSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_PriceSearchMouseClicked
+        jTextField_PriceSearch.setText("");
+    }//GEN-LAST:event_jTextField_PriceSearchMouseClicked
 
     private void jButton_Search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Search1ActionPerformed
         
@@ -508,36 +515,78 @@ public class GUISofa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu_OpenFileActionPerformed
 
-    private void jTextField_Price1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_Price1MouseClicked
-        jTextField_Price.setText("");
-    }//GEN-LAST:event_jTextField_Price1MouseClicked
+    private void jTextField_PriceInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_PriceInsertMouseClicked
+        jTextField_PriceSearch.setText("");
+    }//GEN-LAST:event_jTextField_PriceInsertMouseClicked
 
     private void jButton_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearActionPerformed
         jTextField_SofaId.setText("");
         jTextField_SofaName.setText("");
-        jTextField_Price.setText("");
+        jTextField_PriceSearch.setText("");
     }//GEN-LAST:event_jButton_ClearActionPerformed
 
     private void jTextField_SofaNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_SofaNameMouseClicked
         jTextField_SofaName.setText("");
     }//GEN-LAST:event_jTextField_SofaNameMouseClicked
 
-    private void jButton_Insert1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Insert1ActionPerformed
+    private void jButton_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InsertActionPerformed
         try {
             String sofaId = jTextField_SofaId.getText();
             String sofaName = jTextField_SofaName.getText();
-            String price = jTextField_Price.getText();
+            String price = jTextField_PriceInsert.getText();
             String colour = "";
             String categories = "";
 
             //if fields are left empty a panel will be displayed.
-            if((sofaId.equals("") || sofaName.equals("")) || (price.equals("") || (jComboBox1_Colour.getSelectedItem().equals("Select"))) || buttonGroup1.getSelection() == null ){
+            if((sofaId.equals("") || sofaName.equals("")) || (price.equals("") || jComboBox_Categories.getSelectedItem().equals("Select")) || buttonGroup1.getSelection() == null ){
                 JOptionPane.showMessageDialog(null, "please insert details");
+            } else {
+                categories = jComboBox_Categories.getSelectedItem().toString(); //assign selected category to variable.
+                
+                //check which button has been clicked and assign text to colour variable.
+                if(jRadioButton_Black.isSelected()){
+                    colour = jRadioButton_Black.getText();
+                }
+                else if(jRadioButton_Brown.isSelected()){
+                    colour = jRadioButton_Brown.getText();
+                }
+                else if(jRadioButton_Grey.isSelected()){
+                    colour = jRadioButton_Grey.getText();
+                }
+                else if(jRadioButton_Red.isSelected()){
+                    colour = jRadioButton_Red.getText();
+                }
+                else if(jRadioButton_White.isSelected()){
+                    colour = jRadioButton_White.getText();
+                }
+            
+                //creating arraylist
+                ArrayList<SSinfo> list = new ArrayList<SSinfo>();
+                list.add(new SSinfo(sofaId, sofaName, categories, colour, price)); // add details to array
+                int rowCount = jTable_SofaDetails.getRowCount();
+                int columnCount = jTable_SofaDetails.getColumnCount();
+                int nextRow = 0;
+                boolean emptyRowFlag = false;
+                String check;
+            
+                //check whether the rows and columns are empty.
+                do{
+                    check = (String) jTable_SofaDetails.getValueAt(nextRow, 0);
+                    if(check != null) {
+                        nextRow++;
+                    } else {
+                        emptyRowFlag = true;
+                    }
+                } while(nextRow < rowCount && !emptyRowFlag);
+            
+                for(int i = 0; i < columnCount; i++) {
+                    jTable_SofaDetails.setValueAt(list.get(i), nextRow, i);
+                } 
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error");
         }
-    }//GEN-LAST:event_jButton_Insert1ActionPerformed
+    }//GEN-LAST:event_jButton_InsertActionPerformed
 
     private void jTextField_SofaIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_SofaIdMouseClicked
         jTextField_SofaId.setText("");
@@ -547,9 +596,9 @@ public class GUISofa extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton_WhiteActionPerformed
 
-    private void jComboBox_CategoriesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CategoriesActionPerformed
+    private void jComboBox_CategoriesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CategoriesSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_CategoriesActionPerformed
+    }//GEN-LAST:event_jComboBox_CategoriesSearchActionPerformed
 
     /**
      * @param args the command line arguments
@@ -590,10 +639,10 @@ public class GUISofa extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton_AvailableSofa;
     private javax.swing.JButton jButton_Clear;
-    private javax.swing.JButton jButton_Insert1;
+    private javax.swing.JButton jButton_Insert;
     private javax.swing.JButton jButton_Search1;
-    private javax.swing.JComboBox jComboBox1_Colour;
     private javax.swing.JComboBox jComboBox_Categories;
+    private javax.swing.JComboBox jComboBox_CategoriesSearch;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -618,9 +667,9 @@ public class GUISofa extends javax.swing.JFrame {
     private javax.swing.JRadioButton jRadioButton_Red;
     private javax.swing.JRadioButton jRadioButton_White;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField_Price;
-    private javax.swing.JTextField jTextField_Price1;
+    private javax.swing.JTable jTable_SofaDetails;
+    private javax.swing.JTextField jTextField_PriceInsert;
+    private javax.swing.JTextField jTextField_PriceSearch;
     private javax.swing.JTextField jTextField_SofaId;
     private javax.swing.JTextField jTextField_SofaName;
     // End of variables declaration//GEN-END:variables
