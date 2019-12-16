@@ -5,9 +5,13 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.TreeSet;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,13 +20,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 
 /**
- *
- * @author simon
+ * @author Marco Castellana
+ * @author Simone Agus
  */
 public class GUISofa extends javax.swing.JFrame {
     
     private final JFileChooser openFile;
-    ArrayList<SSinfo> list = new ArrayList<>();//creating arraylist
+//    ArrayList<SSinfo> listDuplicates = new ArrayList<>();
+    Set <SSinfo> set = new HashSet<>();
+    
+     //Set created so that duplicated item cannot be added.
     
 
     /**
@@ -575,19 +582,61 @@ public class GUISofa extends javax.swing.JFrame {
         jTextField_SofaName.setText("");
     }//GEN-LAST:event_jTextField_SofaNameMouseClicked
 
+    /**
+     * This method when called insert data on jTable.
+     */
+    private void insertOnTable()
+    {
+        int rowCount = jTable_SofaDetails.getRowCount();
+        int row = 0;
+        boolean emptyRowFlag = false;
+        String check;
+
+        //Find out in which row data can be inserted.
+        do{
+            check = (String) jTable_SofaDetails.getValueAt(row, 0);
+            if(check != null) {
+                row++;
+            } else {
+                emptyRowFlag = true;
+            }
+        } while(row < rowCount && !emptyRowFlag);
+        
+        String sofaId = "";
+        String sofaName = "";
+        String category = "";
+        String colour = "";
+        double price = 0;
+        
+        for(SSinfo temp : set){
+            sofaId = temp.getSofaId();
+            sofaName = temp.getSofaName();
+            category = temp.getCategory();
+            colour = temp.getColour();
+            price = temp.getPrice();
+            break;
+        }
+        //fill details on jTable.
+        jTable_SofaDetails.setValueAt(sofaId, row, 0);
+        jTable_SofaDetails.setValueAt(sofaName, row, 1);
+        jTable_SofaDetails.setValueAt(category, row, 2);
+        jTable_SofaDetails.setValueAt(colour, row, 3);
+        jTable_SofaDetails.setValueAt(price, row, 4);
+    }
+    
     private void jButton_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InsertActionPerformed
         try {
             String sofaId = jTextField_SofaId.getText();
             String sofaName = jTextField_SofaName.getText();
-            int price = Integer.parseInt(jTextField_PriceInsert.getText());
+            double price = Double.parseDouble(jTextField_PriceInsert.getText());
             String colour = "";
-            String categories = "";
+            String category = "";
 
-            //if fields are left empty a panel will be displayed.
+            //Checking if fields are left empty.
             if((sofaId.equals("") || sofaName.equals("")) || (jTextField_PriceInsert.getText().isEmpty() || jComboBox_Categories.getSelectedItem().equals("Select")) || buttonGroup1.getSelection() == null ){
                 JOptionPane.showMessageDialog(null, "Please insert some details");
             } else {
-                categories = jComboBox_Categories.getSelectedItem().toString(); //assign selected category to variable.
+                category = jComboBox_Categories.getSelectedItem().toString(); //assign selected category to variable.
                 
                 //check which button has been clicked and assign text to colour variable.
                 if(jRadioButton_Black.isSelected()){
@@ -605,33 +654,27 @@ public class GUISofa extends javax.swing.JFrame {
                 else if(jRadioButton_White.isSelected()){
                     colour = jRadioButton_White.getText();
                 }
-            
-                list.add(new SSinfo(sofaId, sofaName, categories, colour, price)); 
-                int rowCount = jTable_SofaDetails.getRowCount();
-                int columnCount = jTable_SofaDetails.getColumnCount();
-                int nextRow = 0;
-                boolean emptyRowFlag = false;
-                String check;
-                        
-                //check whether the rows and columns are empty.
-                do{
-                    check = (String) jTable_SofaDetails.getValueAt(nextRow, 0);
-                    if(check != null) {
-                        nextRow++;
-                    } else {
-                        emptyRowFlag = true;
-                    }
-                } while(nextRow < rowCount && !emptyRowFlag);
-            
-                //fill details on jTable.
-                jTable_SofaDetails.setValueAt(sofaId, nextRow, 0);
-                jTable_SofaDetails.setValueAt(sofaName, nextRow, 1);
-                jTable_SofaDetails.setValueAt(categories, nextRow, 2);
-                jTable_SofaDetails.setValueAt(colour, nextRow, 3);
-                jTable_SofaDetails.setValueAt(price, nextRow, 4);
                 
+                //Checking if set is empty and if there are duplicates.
+                if(set.size() <= 0){
+                    set.add(new SSinfo(sofaId, sofaName, category, colour, price));
+                    insertOnTable();
+                } else{
+                    boolean duplicates = false;
+                    for(SSinfo temp : set) {
+                        if(temp.getSofaId().equals(sofaId)){
+                            JOptionPane.showMessageDialog(null, "The item cannot be added as it does already exist");
+                            duplicates = true;
+                            break;
+                        } 
+                    }
+                    if(!duplicates){
+                        set.add(new SSinfo(sofaId, sofaName, category, colour, price));
+                        insertOnTable();
+                    } 
+                }
             }
-        } catch (NumberFormatException | HeadlessException e) {
+        } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Error");
         }
     }//GEN-LAST:event_jButton_InsertActionPerformed
