@@ -365,9 +365,9 @@ public class GUISofa extends javax.swing.JFrame {
                     .addComponent(jTextField_SofaName, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox_Categories, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7))
-                .addGap(18, 18, 18)
+                    .addComponent(jLabel7)
+                    .addComponent(jComboBox_Categories, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel6)
                     .addComponent(jTextField_PriceInsert, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -463,12 +463,9 @@ public class GUISofa extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jLabel1)
@@ -561,7 +558,10 @@ public class GUISofa extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField_PriceSearchMouseClicked
 
     private void jButton_Search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Search1ActionPerformed
-        
+                String checkEmpty = jTextField_PriceSearch.getText();
+        if (checkEmpty.equals("")){
+            JOptionPane.showMessageDialog(null, "Please enter the Price");
+        }
     }//GEN-LAST:event_jButton_Search1ActionPerformed
 
     private void jMenu_OpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_OpenFileActionPerformed
@@ -576,6 +576,8 @@ public class GUISofa extends javax.swing.JFrame {
         jTextField_SofaId.setText("");
         jTextField_SofaName.setText("");
         jTextField_PriceInsert.setText("");
+        jComboBox_Categories.setSelectedIndex(0);
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_jButton_ClearActionPerformed
 
     private void jTextField_SofaNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_SofaNameMouseClicked
@@ -634,7 +636,7 @@ public class GUISofa extends javax.swing.JFrame {
 
             //Checking if fields are left empty.
             if((sofaId.equals("") || sofaName.equals("")) || (jTextField_PriceInsert.getText().isEmpty() || jComboBox_Categories.getSelectedItem().equals("Select")) || buttonGroup1.getSelection() == null ){
-                JOptionPane.showMessageDialog(null, "Please insert some details");
+                JOptionPane.showMessageDialog(null, "All the details are required");
             } else {
                 category = jComboBox_Categories.getSelectedItem().toString(); //assign selected category to variable.
                 
@@ -654,6 +656,34 @@ public class GUISofa extends javax.swing.JFrame {
                 else if(jRadioButton_White.isSelected()){
                     colour = jRadioButton_White.getText();
                 }
+<<<<<<< HEAD
+=======
+            
+                list.add(new SSinfo(sofaId, sofaName, categories, colour, price)); 
+                int rowCount = jTable_SofaDetails.getRowCount();
+                int columnCount = jTable_SofaDetails.getColumnCount();
+                int nextRow = 0;
+                int nextColumn = 0;
+                boolean emptyRowFlag = false;
+                String check;
+                        
+                //check whether the rows and columns are empty.
+                do{
+                    check = (String) jTable_SofaDetails.getValueAt(nextRow, 0);
+                    if(check != null) {
+                        nextRow++;
+                    } else {
+                        emptyRowFlag = true;
+                    }
+                } while(nextRow < rowCount && !emptyRowFlag);
+            
+                //fill details on jTable.
+                jTable_SofaDetails.setValueAt(sofaId, nextRow, 0);
+                jTable_SofaDetails.setValueAt(sofaName, nextRow, 1);
+                jTable_SofaDetails.setValueAt(categories, nextRow, 2);
+                jTable_SofaDetails.setValueAt(colour, nextRow, 3);
+                jTable_SofaDetails.setValueAt(price, nextRow, 4);
+>>>>>>> 99ab5b10705c13e791988ff987d0cb4a7559bef4
                 
                 //Checking if set is empty and if there are duplicates.
                 if(set.size() <= 0){
@@ -697,6 +727,7 @@ public class GUISofa extends javax.swing.JFrame {
         if ("Select".equals(cBox)){
             JOptionPane.showMessageDialog(null,"Please select a category");
         }
+        jComboBox_CategoriesSearch.setSelectedIndex(0);
         
 //String message = "There are " + ;
     //if()
