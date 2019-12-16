@@ -656,34 +656,7 @@ public class GUISofa extends javax.swing.JFrame {
                 else if(jRadioButton_White.isSelected()){
                     colour = jRadioButton_White.getText();
                 }
-<<<<<<< HEAD
-=======
-            
-                list.add(new SSinfo(sofaId, sofaName, categories, colour, price)); 
-                int rowCount = jTable_SofaDetails.getRowCount();
-                int columnCount = jTable_SofaDetails.getColumnCount();
-                int nextRow = 0;
-                int nextColumn = 0;
-                boolean emptyRowFlag = false;
-                String check;
-                        
-                //check whether the rows and columns are empty.
-                do{
-                    check = (String) jTable_SofaDetails.getValueAt(nextRow, 0);
-                    if(check != null) {
-                        nextRow++;
-                    } else {
-                        emptyRowFlag = true;
-                    }
-                } while(nextRow < rowCount && !emptyRowFlag);
-            
-                //fill details on jTable.
-                jTable_SofaDetails.setValueAt(sofaId, nextRow, 0);
-                jTable_SofaDetails.setValueAt(sofaName, nextRow, 1);
-                jTable_SofaDetails.setValueAt(categories, nextRow, 2);
-                jTable_SofaDetails.setValueAt(colour, nextRow, 3);
-                jTable_SofaDetails.setValueAt(price, nextRow, 4);
->>>>>>> 99ab5b10705c13e791988ff987d0cb4a7559bef4
+
                 
                 //Checking if set is empty and if there are duplicates.
                 if(set.size() <= 0){
