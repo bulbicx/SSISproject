@@ -98,26 +98,43 @@ public class GUISofa extends javax.swing.JFrame {
         jTable_SofaDetails.setForeground(new java.awt.Color(255, 255, 255));
         jTable_SofaDetails.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-
+                "Sofa Id", "Sofa Name", "Category", "Colour", "Price"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable_SofaDetails);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 788, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(49, 49, 49))
         );
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 36)); // NOI18N
@@ -460,7 +477,7 @@ public class GUISofa extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -470,8 +487,8 @@ public class GUISofa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel1)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
@@ -545,26 +562,26 @@ public class GUISofa extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton_Search1ActionPerformed
 
     private void jMenu_OpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_OpenFileActionPerformed
-        String filePath = this.jMenu_OpenFile.toString();
-        File file = new File (filePath);
-        try {
-            BufferedReader br = new BufferedReader (new FileReader (file));
-            String firstLine = br.readLine().trim();
-            String [] columnsName = firstLine.split(",");
-            DefaultTableModel model = (DefaultTableModel)jTable_SofaDetails.getModel();
-            model.setColumnIdentifiers(columnsName);
+     //   String filePath = this.jMenu_OpenFile.toString();
+    //    File file = new File (filePath);
+      //  try {
+       //     BufferedReader br = new BufferedReader (new FileReader (file));
+       //     String firstLine = br.readLine().trim();
+        //    String [] columnsName = firstLine.split(",");
+        //    DefaultTableModel model = (DefaultTableModel)jTable_SofaDetails.getModel();
+        //    model.setColumnIdentifiers(columnsName);
+         //   
+         //   Object [] tableLines = br.lines().toArray();
             
-            Object [] tableLines = br.lines().toArray();
+        //    for (Object tableLine : tableLines) {
+             //   String line = tableLine.toString().trim();
+         //       String [] dataRow = line.split("/");
+             //   model.addRow(dataRow);
+           // }
             
-            for (Object tableLine : tableLines) {
-                String line = tableLine.toString().trim();
-                String [] dataRow = line.split("/");
-                model.addRow(dataRow);
-            }
-            
-        }catch (Exception ex){
-            Logger.getLogger(GUISofa.class.getName()).log(Level.SEVERE,null,ex);
-        }
+       // }catch (Exception ex){
+      //      Logger.getLogger(GUISofa.class.getName()).log(Level.SEVERE,null,ex);
+      //  }
     }//GEN-LAST:event_jMenu_OpenFileActionPerformed
 
     private void jTextField_PriceInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_PriceInsertMouseClicked
