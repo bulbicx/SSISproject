@@ -320,9 +320,6 @@
                   </StringArray>
                 </Property>
               </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBox_CategoriesSearchActionPerformed"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel3">
               <Properties>
@@ -469,21 +466,12 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_PriceInsert">
               <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextField_PriceInsertMouseClicked"/>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_PriceInsertActionPerformed"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_PriceInsertKeyPressed"/>
                 <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_PriceInsertKeyTyped"/>
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_SofaName">
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextField_SofaNameMouseClicked"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextField_SofaId">
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTextField_SofaIdMouseClicked"/>
-              </Events>
             </Component>
             <Component class="javax.swing.JComboBox" name="jComboBox_Categories">
               <Properties>
@@ -597,9 +585,6 @@
                       <Color id="Hand Cursor"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRadioButton_WhiteActionPerformed"/>
-                  </Events>
                 </Component>
                 <Component class="javax.swing.JRadioButton" name="jRadioButton_Brown">
                   <Properties>

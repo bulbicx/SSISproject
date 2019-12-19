@@ -5,9 +5,7 @@ import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -20,17 +18,20 @@ import javax.swing.table.*;
  */
 
 /**
+ * This class creates a Sofa GUI. the GUI will contains radioButton for colour choice, comboBox for category choice, textField 
+ * for all other inputs. A table is created where sofas will be displayed with their ID, names, category, colour and price.
+ * A menu bar is created with file: containing open file and exit and help for user help files. the system will provide two
+ * functionalities. one will be based on search sofas by price and the other will be based to search by category and displaying all
+ * sofas related to that category. If sofas are found a JOptionPane will be displayed otherwise related message to unsuccessful search 
+ * will be displayed. Search is based on Binary search and a class has been created for that.
+ * 
  * @author Marco Castellana
  * @author Simone Agus
  */
 public class GUISofa extends javax.swing.JFrame {
     
     private final JFileChooser openFile;
-//    ArrayList<SSinfo> listDuplicates = new ArrayList<>();
-    Set <SSinfo> set = new HashSet<>();
-    
-     //Set created so that duplicated item cannot be added.
-    
+    List<SSinfo> sofas = new ArrayList<>(); // implemented list.
 
     /**
      * Creates new form GUISofa
@@ -150,11 +151,6 @@ public class GUISofa extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED), "Available Sofas", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 16), new java.awt.Color(255, 255, 255))); // NOI18N
 
         jComboBox_CategoriesSearch.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Sofa Beds", "Corner Sofas", "Armchairs", "Chaise-Lounge", "Sofas" }));
-        jComboBox_CategoriesSearch.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox_CategoriesSearchActionPerformed(evt);
-            }
-        });
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -207,34 +203,9 @@ public class GUISofa extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Price");
 
-        jTextField_PriceInsert.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField_PriceInsertMouseClicked(evt);
-            }
-        });
-        jTextField_PriceInsert.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField_PriceInsertActionPerformed(evt);
-            }
-        });
         jTextField_PriceInsert.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTextField_PriceInsertKeyPressed(evt);
-            }
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField_PriceInsertKeyTyped(evt);
-            }
-        });
-
-        jTextField_SofaName.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField_SofaNameMouseClicked(evt);
-            }
-        });
-
-        jTextField_SofaId.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTextField_SofaIdMouseClicked(evt);
             }
         });
 
@@ -253,11 +224,6 @@ public class GUISofa extends javax.swing.JFrame {
         jRadioButton_White.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton_White.setText("White");
         jRadioButton_White.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jRadioButton_White.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRadioButton_WhiteActionPerformed(evt);
-            }
-        });
 
         jRadioButton_Brown.setBackground(new java.awt.Color(44, 62, 80));
         buttonGroup1.add(jRadioButton_Brown);
@@ -319,7 +285,7 @@ public class GUISofa extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jRadioButton_Black))
                     .addComponent(jButton_Insert, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                         .addComponent(jRadioButton_Grey)
@@ -553,25 +519,56 @@ public class GUISofa extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jMenu_OpenActionPerformed
 
+/**
+ * PriceSearch textField when double-clicked is cleared.
+ */
     private void jTextField_PriceSearchMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_PriceSearchMouseClicked
         jTextField_PriceSearch.setText("");
     }//GEN-LAST:event_jTextField_PriceSearchMouseClicked
 
+/**
+ * This method is used to perform a search based on price. A JOptionPane will be shown
+ * depending on the situation.
+ */
     private void jButton_Search1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_Search1ActionPerformed
-                String checkEmpty = jTextField_PriceSearch.getText();
-        if (checkEmpty.equals("")){
-            JOptionPane.showMessageDialog(null, "Please enter the Price");
+    try {
+        int priceSearch = Integer.parseInt(jTextField_PriceSearch.getText());
+        Collections.sort(sofas, new PriceSorter());
+        int index = ObjBinSearch.binarySearch(sofas, new SSinfo(null,null,null,null,priceSearch), new PriceSorter());
+        
+        if(index >= 0) 
+        {
+            JOptionPane.showMessageDialog(null, "Sofa ID: " + sofas.get(index).getSofaId() + "\n" +
+                                            "Sofa Name: " + sofas.get(index).getSofaName() + "\n" +
+                                            "Category: " + sofas.get(index).getCategory() + "\n" +
+                                            "Colour: " + sofas.get(index).getColour() + "\n" +
+                                            "Price: " + sofas.get(index).getPrice());
+        } 
+        else if(Integer.parseInt(jTextField_PriceSearch.getText()) < 0)
+        {
+            JOptionPane.showMessageDialog(null, "A negative number is not valid!");
+        }else {
+            JOptionPane.showMessageDialog(null, "No match found"); // if price does not match any of the present show message.
+        }  
+    } catch(NumberFormatException e) {
+        JOptionPane.showMessageDialog(null, "Please insert a price for a search");
+    } catch(IndexOutOfBoundsException e) {
+        if(sofas.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "There are no sofas listed yet");
+        }else {
+            JOptionPane.showMessageDialog(null, "Sofa is not present in the list");
         }
+    }
     }//GEN-LAST:event_jButton_Search1ActionPerformed
 
     private void jMenu_OpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_OpenFileActionPerformed
         
     }//GEN-LAST:event_jMenu_OpenFileActionPerformed
 
-    private void jTextField_PriceInsertMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_PriceInsertMouseClicked
-        jTextField_PriceInsert.setText("");
-    }//GEN-LAST:event_jTextField_PriceInsertMouseClicked
-
+/**
+ * Clear button will set all fields to empty.
+ */
     private void jButton_ClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_ClearActionPerformed
         jTextField_SofaId.setText("");
         jTextField_SofaName.setText("");
@@ -580,16 +577,10 @@ public class GUISofa extends javax.swing.JFrame {
         buttonGroup1.clearSelection();
     }//GEN-LAST:event_jButton_ClearActionPerformed
 
-    private void jTextField_SofaNameMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_SofaNameMouseClicked
-        jTextField_SofaName.setText("");
-    }//GEN-LAST:event_jTextField_SofaNameMouseClicked
-
-    /**
-     * This method when called insert data on jTable.
-     */
-    private void insertOnTable()
-    {
-        int rowCount = jTable_SofaDetails.getRowCount();
+/**
+ * This method when called insert data on jTable.
+ */    
+    private void insertOnTable() {
         int row = 0;
         boolean emptyRowFlag = false;
         String check;
@@ -597,46 +588,60 @@ public class GUISofa extends javax.swing.JFrame {
         //Find out in which row data can be inserted.
         do{
             check = (String) jTable_SofaDetails.getValueAt(row, 0);
-            if(check != null) {
+            if(check != null) {   //if row is found with data then try next row
                 row++;
             } else {
                 emptyRowFlag = true;
             }
-        } while(row < rowCount && !emptyRowFlag);
+        } while(!emptyRowFlag);
         
-        String sofaId = "";
-        String sofaName = "";
-        String category = "";
-        String colour = "";
-        double price = 0;
+        String newSofaId = "";
+        String newSofaName = "";
+        String newCategory = "";
+        String newColour = "";
+        int newPrice = 0;
         
-        for(SSinfo temp : set){
-            sofaId = temp.getSofaId();
-            sofaName = temp.getSofaName();
-            category = temp.getCategory();
-            colour = temp.getColour();
-            price = temp.getPrice();
-            break;
+        //Assingn details of the object to variables. A for loop
+        //will go through all list up until the last object inserted
+        //which is the last remained and assigned on the variables.
+        for(SSinfo temp : sofas){ 
+            newSofaId = temp.getSofaId();
+            newSofaName = temp.getSofaName();
+            newCategory = temp.getCategory();
+            newColour = temp.getColour();
+            newPrice = temp.getPrice();
         }
         //fill details on jTable.
-        jTable_SofaDetails.setValueAt(sofaId, row, 0);
-        jTable_SofaDetails.setValueAt(sofaName, row, 1);
-        jTable_SofaDetails.setValueAt(category, row, 2);
-        jTable_SofaDetails.setValueAt(colour, row, 3);
-        jTable_SofaDetails.setValueAt(price, row, 4);
+        jTable_SofaDetails.setValueAt(newSofaId, row, 0);
+        jTable_SofaDetails.setValueAt(newSofaName, row, 1);
+        jTable_SofaDetails.setValueAt(newCategory, row, 2);
+        jTable_SofaDetails.setValueAt(newColour, row, 3);
+        jTable_SofaDetails.setValueAt(newPrice, row, 4);
+        
+        JOptionPane.showMessageDialog(null, "Great! a sofa has been added!");
     }
     
+/**
+ * Insert button is pressed and values from textField, comboBox and radioButton are stored inside variables.
+ * It is checked that all necessary details are inserted, otherwise a message will be displayed. It is also checked that 
+ * ID being inserted it is not already present. If this method is successful then insertOnTable method is called.
+ */    
     private void jButton_InsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_InsertActionPerformed
         try {
             String sofaId = jTextField_SofaId.getText();
             String sofaName = jTextField_SofaName.getText();
-            double price = Double.parseDouble(jTextField_PriceInsert.getText());
+            int price = Integer.parseInt(jTextField_PriceInsert.getText());
             String colour = "";
             String category = "";
-
+            boolean duplicates = false;
+            
             //Checking if fields are left empty.
-            if((sofaId.equals("") || sofaName.equals("")) || (jTextField_PriceInsert.getText().isEmpty() || jComboBox_Categories.getSelectedItem().equals("Select")) || buttonGroup1.getSelection() == null ){
+            if(jComboBox_Categories.getSelectedItem().equals("Select") || buttonGroup1.getSelection() == null ){
                 JOptionPane.showMessageDialog(null, "All the details are required");
+            } 
+            else if(price <= 0) 
+            {
+                JOptionPane.showMessageDialog(jMenu_Open, "Price must be a positive number");
             } else {
                 category = jComboBox_Categories.getSelectedItem().toString(); //assign selected category to variable.
                 
@@ -656,61 +661,88 @@ public class GUISofa extends javax.swing.JFrame {
                 else if(jRadioButton_White.isSelected()){
                     colour = jRadioButton_White.getText();
                 }
-
-                
-                //Checking if set is empty and if there are duplicates.
-                if(set.size() <= 0){
-                    set.add(new SSinfo(sofaId, sofaName, category, colour, price));
-                    insertOnTable();
-                } else{
-                    boolean duplicates = false;
-                    for(SSinfo temp : set) {
+                //Checking if there are any id duplicates.
+                for(SSinfo temp : sofas) {
                         if(temp.getSofaId().equals(sofaId)){
-                            JOptionPane.showMessageDialog(null, "The item cannot be added as it does already exist");
+                            JOptionPane.showMessageDialog(null, "The sofa cannot be added as the ID is already present");
                             duplicates = true;
                             break;
                         } 
-                    }
-                    if(!duplicates){
-                        set.add(new SSinfo(sofaId, sofaName, category, colour, price));
+                    }    
+                //Checking if list is empty or the id inserting is not present yet.    
+                if(!duplicates || sofas.size() <= 0){
+                        sofas.add(new SSinfo(sofaId, sofaName, category, colour, price));
                         insertOnTable();
-                    } 
-                }
+                    }
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Error");
+            JOptionPane.showMessageDialog(null, "Please make sure that all sofa details are inserted");
         }
     }//GEN-LAST:event_jButton_InsertActionPerformed
 
-    private void jTextField_SofaIdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField_SofaIdMouseClicked
-        jTextField_SofaId.setText("");
-    }//GEN-LAST:event_jTextField_SofaIdMouseClicked
-
-    private void jRadioButton_WhiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton_WhiteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRadioButton_WhiteActionPerformed
-
-    private void jComboBox_CategoriesSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox_CategoriesSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox_CategoriesSearchActionPerformed
-
+ /**
+  * Pressing the Available sofas the column category is read and stored in an ArrayList. Then It is counted how many are
+  * available and a list of names related to the category is displayed in a JOptionPane. If search key is not found then
+  * error messages will be displayed accordingly.
+  */
     private void jButton_AvailableSofaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_AvailableSofaActionPerformed
-
-        String cBox = jComboBox_CategoriesSearch.getSelectedItem().toString();
-        if ("Select".equals(cBox)){
-            JOptionPane.showMessageDialog(null,"Please select a category");
+        String key = jComboBox_CategoriesSearch.getSelectedItem().toString(); //get the search keyword
+        ArrayList<String> coll = new ArrayList<>();
+        ArrayList<String> names = new ArrayList<>(); // this array is only used when a match key is found in sofas list
+         
+        if (key.equals("Select"))
+        {
+            JOptionPane.showMessageDialog(null, "Please select a category");
+        } else {
+           //get contents from columns:
+           int rowCount = jTable_SofaDetails.getRowCount();
+           String cate;
+           int rowIndex = 0; //start from row 0
+           int colIndex = 2; //set collumn index to 2 as Categories are stored in collumn 2
+           boolean emptyFlag = false;
+           do{
+               cate = (String)jTable_SofaDetails.getValueAt(rowIndex, colIndex);
+               if (cate != null && cate.length() != 0)
+               {
+                   coll.add(cate);
+                   rowIndex++;
+               } else {
+                   emptyFlag = true;
+               }
+           } while(rowIndex < rowCount && !emptyFlag);
+           
+           int low = 0;
+           int high = coll.size()-1;
+           Collections.sort(coll); //sort the list
+           int searchResult = BinSearch.binarySearch(coll, low, high,key);
+           int count = Collections.frequency(coll, key);
+           if(searchResult >= 0) 
+           {
+               for(int i= 0; i <= sofas.size()-1; i++) {
+                   String val = sofas.get(i).getCategory();// get value category from index(i) to variable
+                   if(val.compareTo(key) == 0){
+                       names.add(sofas.get(i).getSofaName());//if variable match key(it is == 0) in list then store name in arraylist
+                   }
+               }
+               if(Collections.frequency(coll, key) == 1)
+               {
+                   JOptionPane.showMessageDialog(null, "There is " + count + " piece of " + key + " available: " +
+                                              names.toString());
+               }
+               else if(Collections.frequency(coll, key) > 1)
+               {
+                   JOptionPane.showMessageDialog(null, "There are " + count + " pieces of " + key + " available: " +
+                                              names.toString());
+               }
+           } else {
+               JOptionPane.showMessageDialog(null, key + " are not available");
+           }
         }
-        jComboBox_CategoriesSearch.setSelectedIndex(0);
-        
-//String message = "There are " + ;
-    //if()
-//JOptionPane.showMessageDialog(null, "There are " + list.size().SSinfo(2) + " pieces of " + jComboBox_CategoriesSearch.getSe);
     }//GEN-LAST:event_jButton_AvailableSofaActionPerformed
 
-    private void jTextField_PriceInsertActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_PriceInsertActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField_PriceInsertActionPerformed
-
+/**
+ * Whenever a String is typed in priceSearch textField, an error message is displayed.
+ */
     private void jTextField_PriceSearchKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PriceSearchKeyTyped
         char a = evt.getKeyChar();
         if(Character.isLetter(a)){
@@ -720,14 +752,16 @@ public class GUISofa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField_PriceSearchKeyTyped
 
+/**
+ * At click the window will be closed.
+ */
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         System.exit(0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jTextField_PriceInsertKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PriceInsertKeyPressed
-
-    }//GEN-LAST:event_jTextField_PriceInsertKeyPressed
-
+/**
+ * Whenever a String is typed in PriceInsert textField, an error message is displayed.
+ */
     private void jTextField_PriceInsertKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_PriceInsertKeyTyped
          char b = evt.getKeyChar();
         if(Character.isLetter(b)){
