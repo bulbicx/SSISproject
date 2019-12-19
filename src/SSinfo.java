@@ -1,10 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
+ * This class is created with the intent of creating object in a list. Each of them will
+ * contain variables declared in this class(id,name,category,colour and price). The Object
+ * when created will have to store all the variable previously named.
+ * 
  *@author Marco Castellana
  * @author Simone Agus
  */
@@ -14,9 +12,9 @@ public class SSinfo {
     public String sofaName;
     public String category;
     public String colour;
-    public double price;
+    public int price;
 
-    public SSinfo(String sofaId, String sofaName, String category, String colour, double price) 
+    public SSinfo(String sofaId, String sofaName, String category, String colour, int price) 
     {
         this.sofaId = sofaId;
         this.sofaName = sofaName;
@@ -45,7 +43,7 @@ public class SSinfo {
         return colour;
     }
 
-    public double getPrice() 
+    public int getPrice() 
     {
         return price;
     }
@@ -70,9 +68,9 @@ public class SSinfo {
         this.colour = colour;
     }
 
-    public void setPrice(double price) 
+    public void setPrice(int price) 
     {
         this.price = price;
     }  
-    
+     
 }
