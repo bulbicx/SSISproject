@@ -1,27 +1,17 @@
 
 import java.awt.HeadlessException;
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
-import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.table.*;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- * This class creates a Sofa GUI. the GUI will contains radioButton for colour choice, comboBox for category choice, textField 
+ * This class creates a Sofa interface. The GUI will contains radioButton for colour choice, comboBox for category choice, textField 
  * for all other inputs. A table is created where sofas will be displayed with their ID, names, category, colour and price.
- * A menu bar is created with file: containing open file and exit and help for user help files. the system will provide two
- * functionalities. one will be based on search sofas by price and the other will be based to search by category and displaying all
+ * Two menu bar are created, one is named help and the other is named file, this last will contain open file and exit. The system will provide two
+ * functionalities. one will be based on searching sofas by price and the other will search by category and displaying all
  * sofas related to that category. If sofas are found a JOptionPane will be displayed otherwise related message to unsuccessful search 
  * will be displayed. Search is based on Binary search and a class has been created for that.
  * 
@@ -30,7 +20,6 @@ import javax.swing.table.*;
  */
 public class GUISofa extends javax.swing.JFrame {
     
-    private final JFileChooser openFile;
     List<SSinfo> sofas = new ArrayList<>(); // implemented list.
 
     /**
@@ -38,9 +27,6 @@ public class GUISofa extends javax.swing.JFrame {
      */
     public GUISofa() {
         initComponents();
-        
-        openFile = new JFileChooser();
-        openFile.setFileFilter(new FileNameExtensionFilter("TXT files","txt"));
     }
 
     /**
@@ -84,10 +70,10 @@ public class GUISofa extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jButton_Search1 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu_OpenFile = new javax.swing.JMenu();
-        jMenu_Open = new javax.swing.JMenuItem();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
+        jMenu_file = new javax.swing.JMenu();
+        jMenu_OpenFile = new javax.swing.JMenuItem();
+        jMenuItem_Exit = new javax.swing.JMenuItem();
+        jMenu2_help = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Sofa Shop Information System");
@@ -459,35 +445,40 @@ public class GUISofa extends javax.swing.JFrame {
 
         jMenuBar1.setBackground(new java.awt.Color(255, 255, 255));
 
-        jMenu_OpenFile.setText("File");
+        jMenu_file.setText("File");
+        jMenu_file.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu_fileActionPerformed(evt);
+            }
+        });
+
+        jMenu_OpenFile.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
+        jMenu_OpenFile.setText("Open file...");
         jMenu_OpenFile.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu_OpenFileActionPerformed(evt);
             }
         });
+        jMenu_file.add(jMenu_OpenFile);
 
-        jMenu_Open.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_O, java.awt.event.InputEvent.CTRL_MASK));
-        jMenu_Open.setText("Open file...");
-        jMenu_Open.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem_Exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
+        jMenuItem_Exit.setText("Exit");
+        jMenuItem_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenu_OpenActionPerformed(evt);
+                jMenuItem_ExitActionPerformed(evt);
             }
         });
-        jMenu_OpenFile.add(jMenu_Open);
+        jMenu_file.add(jMenuItem_Exit);
 
-        jMenuItem2.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_Q, java.awt.event.InputEvent.CTRL_MASK));
-        jMenuItem2.setText("Exit");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
+        jMenuBar1.add(jMenu_file);
+
+        jMenu2_help.setText("Help");
+        jMenu2_help.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2_helpMouseClicked(evt);
             }
         });
-        jMenu_OpenFile.add(jMenuItem2);
-
-        jMenuBar1.add(jMenu_OpenFile);
-
-        jMenu2.setText("Help");
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMenu2_help);
 
         setJMenuBar(jMenuBar1);
 
@@ -505,19 +496,21 @@ public class GUISofa extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenu_OpenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_OpenActionPerformed
+/**
+ * This method when called will open a FileOpener which it will enable to open any file format.
+ */    
+    private void jMenu_OpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_OpenFileActionPerformed
        
         FileOpener newOpener = new FileOpener();
         
-        try {
-            newOpener.choose_me();
-            
-        }catch(Exception e)  
+        try 
         {
-            e.printStackTrace();
+            newOpener.chooseMe();  
+        } catch(Exception e) {
+            JOptionPane.showMessageDialog(null, "Error");
         }
         
-    }//GEN-LAST:event_jMenu_OpenActionPerformed
+    }//GEN-LAST:event_jMenu_OpenFileActionPerformed
 
 /**
  * PriceSearch textField when double-clicked is cleared.
@@ -562,9 +555,9 @@ public class GUISofa extends javax.swing.JFrame {
     }
     }//GEN-LAST:event_jButton_Search1ActionPerformed
 
-    private void jMenu_OpenFileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_OpenFileActionPerformed
+    private void jMenu_fileActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu_fileActionPerformed
         
-    }//GEN-LAST:event_jMenu_OpenFileActionPerformed
+    }//GEN-LAST:event_jMenu_fileActionPerformed
 
 /**
  * Clear button will set all fields to empty.
@@ -641,7 +634,7 @@ public class GUISofa extends javax.swing.JFrame {
             } 
             else if(price <= 0) 
             {
-                JOptionPane.showMessageDialog(jMenu_Open, "Price must be a positive number");
+                JOptionPane.showMessageDialog(jMenu_OpenFile, "Price must be a positive number");
             } else {
                 category = jComboBox_Categories.getSelectedItem().toString(); //assign selected category to variable.
                 
@@ -748,16 +741,15 @@ public class GUISofa extends javax.swing.JFrame {
         if(Character.isLetter(a)){
             JOptionPane.showMessageDialog (null, "Please enter only number");
             evt.consume();
-            
         }
     }//GEN-LAST:event_jTextField_PriceSearchKeyTyped
 
 /**
  * At click the window will be closed.
  */
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+    private void jMenuItem_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem_ExitActionPerformed
         System.exit(0);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
+    }//GEN-LAST:event_jMenuItem_ExitActionPerformed
 
 /**
  * Whenever a String is typed in PriceInsert textField, an error message is displayed.
@@ -767,9 +759,20 @@ public class GUISofa extends javax.swing.JFrame {
         if(Character.isLetter(b)){
             JOptionPane.showMessageDialog (null, "Please enter only number");
             evt.consume();
-            
         }
     }//GEN-LAST:event_jTextField_PriceInsertKeyTyped
+
+/**
+ * This method when called will open a Help file PDF inside Project folder.
+ */
+    private void jMenu2_helpMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2_helpMouseClicked
+    try 
+    {
+        Runtime.getRuntime().exec("cmd /c start " +System.getProperty("user.dir")+"/Help.pdf");//Help file in the root of Project folder
+    } catch (Exception e) {
+        JOptionPane.showMessageDialog(null, e);
+    }
+    }//GEN-LAST:event_jMenu2_helpMouseClicked
 
     /**
      * @param args the command line arguments
@@ -819,11 +822,11 @@ public class GUISofa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu2_help;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenu_Open;
-    private javax.swing.JMenu jMenu_OpenFile;
+    private javax.swing.JMenuItem jMenuItem_Exit;
+    private javax.swing.JMenuItem jMenu_OpenFile;
+    private javax.swing.JMenu jMenu_file;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
