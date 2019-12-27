@@ -3,54 +3,32 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.util.Scanner;
 import javax.swing.JFileChooser;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+import javax.swing.JOptionPane;
 
 /**
+ * This class display a file chooser enabling the GUI to display different type of file.
  *
- * @author simon
+ * @author Marco Castellana
+ * @author Simone Agus
  */
 public class FileOpener {
     
-    JFileChooser file_chooser = new JFileChooser();
-    StringBuilder strb = new StringBuilder();
+    JFileChooser file_chooser = new JFileChooser(); //creating a file chooser window
     
-    public void choose_me() throws FileNotFoundException {
+    public void chooseMe() throws FileNotFoundException {
         
         if (file_chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) 
         {
-            
             File file = file_chooser.getSelectedFile();
-            Scanner input = new Scanner(file);
-            
-            while (input.hasNext())
-            {
-                
-                strb.append(input.nextLine());
-                strb.append("\n");
-                
-                
-                
+            String path = file.getAbsolutePath();
+            try {
+                Runtime.getRuntime().exec("rundll32 url.dll, FileProtocolHandler " + path);
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Invalid path");
             }
-            
-            input.close();
-            
-            
-            
+        } else {
+            JOptionPane.showMessageDialog(null, "Runtime error");
         }
-        else {
-            
-            strb.append("No File selected");
-        }
-        
     }
-    
-    
-    
 }
