@@ -8,14 +8,14 @@ import java.util.Comparator;
  * @author Marco Castellana
  * @author Simone Agus
  */
-public class PriceSorter implements Comparator<SSinfo> {
+public class PriceSorter implements Comparator<SSobject> {
 
     public PriceSorter() {
     }
     
 
     @Override
-    public int compare(SSinfo o1, SSinfo o2){
+    public int compare(SSobject o1, SSobject o2){
         return o1.getPrice() - o2.getPrice();
     }
 
